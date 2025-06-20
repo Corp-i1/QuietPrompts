@@ -2,11 +2,11 @@
 
 ## Supported Versions
 
-The following table outlines which versions of Win-Labs are currently supported with security updates:
+The following table outlines which versions of QuietPrompts are currently supported with security updates:
 
 | Version  | Supported          |
 | -------- | ------------------ |
-| 1.0.0.1  | :white_check_mark: |
+| 1.0.0  | :white_check_mark: |
 | < 1.0    | :x:                |
 
 ## Reporting a Vulnerability
