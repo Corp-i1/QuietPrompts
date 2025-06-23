@@ -1,0 +1,45 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <Title>QuietPrompts</Title>
+    <Authors>Corpi1</Authors>
+    <Company>Corpi1</Company>
+    <Description>A alternative to the default windows prompts/popups, no more dinging!</Description>
+    <Copyright>Copyright (c) Corp-i1 2025</Copyright>
+    <PackageProjectUrl>www.corpi1.uk</PackageProjectUrl>
+    <PackageIcon>{C1} 100x100 Teal.png</PackageIcon>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <RepositoryUrl>https://github.com/Corp-i1/QuietPrompts</RepositoryUrl>
+    <NeutralLanguage>en</NeutralLanguage>
+    <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
+    <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="resources\{C1} 100x100 Teal.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="resources\{C1} 100x100 Teal.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </Resource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="LICENSE.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Update="README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
+
+</Project>

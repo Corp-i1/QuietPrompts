@@ -1,0 +1,69 @@
+<Window x:Class="QuietPrompts.PromptWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:QuietPrompts"
+        xmlns:Converter="clr-namespace:QuietPrompts.Converters"
+        Title="{Binding WindowTitle, FallbackValue='Prompt'}"
+        WindowStyle="{Binding TitleBarVisible, Converter={StaticResource BoolToWindowStyleConverter}}"
+        Background="{Binding BackgroundColor, FallbackValue=White, Converter={StaticResource ColorToBrushConverter}}"
+        Foreground="{Binding ForegroundColor, FallbackValue=Black, Converter={StaticResource ColorToBrushConverter}}"
+        ResizeMode="NoResize"
+        SizeToContent="WidthAndHeight"
+        WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <Converter:NullToVisibilityConverter x:Key="NullToVisibilityConverter"/>
+        <Converter:ColorToBrushConverter x:Key="ColorToBrushConverter"/>
+        <Converter:BoolToWindowStyleConverter x:Key="BoolToWindowStyleConverter"/>
+    </Window.Resources>
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <!-- Icon -->
+        <Image Grid.Row="0"
+               Width="48" Height="48"
+               Source="{Binding Icon}"
+               Visibility="{Binding Icon, Converter={StaticResource NullToVisibilityConverter}}"
+               HorizontalAlignment="Center" Margin="0,0,0,10"/>
+        <!-- Main Title -->
+        <TextBlock Grid.Row="1"
+                   Text="{Binding MainTitle}"
+                   FontWeight="Bold"
+                   FontSize="18"
+                   HorizontalAlignment="Center"
+                   Margin="0,0,0,10"/>
+        <!-- Main Text (with color markup support) -->
+        <TextBlock Grid.Row="2"
+                   HorizontalAlignment="Center"
+                   TextWrapping="Wrap"
+                   FontSize="14">
+            <TextBlock.Inlines>
+                <!-- This will be populated in code-behind by parsing color markup -->
+            </TextBlock.Inlines>
+        </TextBlock>
+        <!-- Buttons -->
+        <StackPanel Grid.Row="3"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Center"
+                    Margin="0,20,0,0">
+            <ItemsControl ItemsSource="{Binding Buttons}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Horizontal" />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Button Content="{Binding Text}"
+                                Command="{Binding Action}"
+                                Background="{Binding Color, Converter={StaticResource ColorToBrushConverter}}"
+                                Margin="5,0"/>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </StackPanel>
+    </Grid>
+</Window>
